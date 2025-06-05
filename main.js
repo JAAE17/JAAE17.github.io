@@ -1,3 +1,4 @@
+
 // Crear elementos flotantes
 function createFloatingElements() {
     const container = document.getElementById('floatingElements');
@@ -24,6 +25,22 @@ function createFloatingElements() {
     }
 }
 
+// Función para descargar CV (simulada)
+function downloadCV() {
+    // Aquí puedes cambiar la URL por la de tu CV real
+    const cvUrl = 'path/to/your/cv.pdf';
+    
+    // Crear elemento temporal para descarga
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'Alejandro_Anton_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Mensaje temporal mientras no tienes el archivo
+    alert('Funcionalidad de descarga de CV - Cambia la URL en script.js por la ruta de tu CV real');
+}
 
 // Smooth scroll para los enlaces
 document.addEventListener('DOMContentLoaded', function() {
@@ -82,22 +99,27 @@ function initializeParallax() {
     });
 }
 
-// Cambiar color del gradiente del nombre cada cierto tiempo
+// Cambiar color del gradiente del nombre cada cierto tiempo - VERSIÓN CORREGIDA
 function initializeNameGradientAnimation() {
+    const name = document.querySelector('.name');
+    if (!name) return; // Verificar que el elemento existe
+    
+    const colors = [
+        'linear-gradient(135deg, #ff6b6b 0%, #ff8e53 12.5%, #ff6b9d 25%, #c44569 37.5%, #6c5ce7 50%, #a29bfe 62.5%, #74b9ff 75%, #0984e3 87.5%, #00b894 100%)',
+        'linear-gradient(135deg, #a8edea 0%, #fed6e3 25%, #ff9a9e 50%, #fecfef 75%, #ffecd2 100%)',
+        'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)',
+        'linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff8a80 50%, #ff5722 75%, #e91e63 100%)',
+        'linear-gradient(135deg, #00c9ff 0%, #92fe9d 25%, #00d2ff 50%, #3a7bd5 75%, #00d2ff 100%)'
+    ];
+    
     setInterval(() => {
-        const name = document.querySelector('.name');
-        const colors = [
-            'linear-gradient(135deg, #ff6b6b 0%, #ff8e53 12.5%, #ff6b9d 25%, #c44569 37.5%, #6c5ce7 50%, #a29bfe 62.5%, #74b9ff 75%, #0984e3 87.5%, #00b894 100%)',
-            'linear-gradient(135deg, #a8edea 0%, #fed6e3 25%, #ff9a9e 50%, #fecfef 75%, #ffecd2 100%)',
-            'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)',
-            'linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff8a80 50%, #ff5722 75%, #e91e63 100%)',
-            'linear-gradient(135deg, #00c9ff 0%, #92fe9d 25%, #00d2ff 50%, #3a7bd5 75%, #00d2ff 100%)'
-        ];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        if (name) {
-            name.style.background = randomColor;
-            name.style.backgroundSize = '400% 400%';
-        }
+        // Mantener todas las propiedades necesarias para el texto
+        name.style.background = randomColor;
+        name.style.backgroundSize = '400% 400%';
+        name.style.webkitBackgroundClip = 'text';
+        name.style.webkitTextFillColor = 'transparent';
+        name.style.backgroundClip = 'text';
     }, 10000); // Cambiar cada 10 segundos
 }
 
