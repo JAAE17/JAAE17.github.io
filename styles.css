@@ -71,12 +71,15 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
-/* Agregar después de las keyframes existentes */
-
-/* Mejorar la calidad del gradiente en el nombre */
+/* VERSIÓN CORREGIDA - TEXTO SIEMPRE VISIBLE */
 .name {
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: bold;
+    
+    /* Color de respaldo en caso de que el gradiente falle */
+    color: #ffffff;
+    
+    /* Gradiente como overlay */
     background: linear-gradient(135deg, 
         #ff6b6b 0%, 
         #ff8e53 12.5%, 
@@ -89,8 +92,46 @@ body {
         #00b894 100%);
     background-size: 400% 400%;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    
+    /* CLAVE: Solo hacer transparente si el navegador soporta background-clip */
+    -webkit-text-fill-color: transparent;
+    
+    /* Respaldo para navegadores que no soportan background-clip */
+    @supports not (-webkit-background-clip: text) {
+        color: #64b5f6;
+        -webkit-text-fill-color: initial;
+    }
+    
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    animation: gradientShift 6s ease-in-out infinite, fadeInUp 1s ease-out 0.3s both;
+    
+    /* Asegurar que el elemento siempre sea visible */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Versión alternativa más segura sin -webkit-text-fill-color */
+.name-safe {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(135deg, 
+        #ff6b6b 0%, 
+        #ff8e53 12.5%, 
+        #ff6b9d 25%, 
+        #c44569 37.5%, 
+        #6c5ce7 50%, 
+        #a29bfe 62.5%, 
+        #74b9ff 75%, 
+        #0984e3 87.5%, 
+        #00b894 100%);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
     text-align: center;
     line-height: 1.1;
     margin-bottom: 0.5rem;
