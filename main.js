@@ -24,22 +24,6 @@ function createFloatingElements() {
     }
 }
 
-// Función para descargar CV (simulada)
-function downloadCV() {
-    // Aquí puedes cambiar la URL por la de tu CV real
-    const cvUrl = 'path/to/your/cv.pdf';
-    
-    // Crear elemento temporal para descarga
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'Gianluca_DOnofrio_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Mensaje temporal mientras no tienes el archivo
-    alert('Funcionalidad de descarga de CV - Cambia la URL en script.js por la ruta de tu CV real');
-}
 
 // Smooth scroll para los enlaces
 document.addEventListener('DOMContentLoaded', function() {
@@ -191,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar efecto de partículas en hover
     createHoverEffect();
     
-    console.log('🚀 Portafolio de Gianluca D\'Onofrio cargado exitosamente!');
+    console.log('🚀 Portafolio de Alejandro Anton cargado exitosamente!');
 });
 
 // Función para manejar el redimensionamiento de ventana
