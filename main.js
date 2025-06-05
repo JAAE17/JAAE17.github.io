@@ -1,4 +1,3 @@
-
 // Crear elementos flotantes
 function createFloatingElements() {
     const container = document.getElementById('floatingElements');
@@ -27,18 +26,13 @@ function createFloatingElements() {
 
 // Función para descargar CV (simulada)
 function downloadCV() {
-    // Aquí puedes cambiar la URL por la de tu CV real
     const cvUrl = 'path/to/your/cv.pdf';
-    
-    // Crear elemento temporal para descarga
     const link = document.createElement('a');
     link.href = cvUrl;
     link.download = 'Alejandro_Anton_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    // Mensaje temporal mientras no tienes el archivo
     alert('Funcionalidad de descarga de CV - Cambia la URL en script.js por la ruta de tu CV real');
 }
 
@@ -83,26 +77,11 @@ function initializeObservers() {
     });
 }
 
-// Efecto de paralaje sutil en el mouse
-function initializeParallax() {
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        const dots = document.querySelectorAll('.floating-dot');
-        dots.forEach((dot, index) => {
-            const speed = (index % 3 + 1) * 0.5;
-            const x = (mouseX - 0.5) * speed;
-            const y = (mouseY - 0.5) * speed;
-            dot.style.transform += ` translate(${x}px, ${y}px)`;
-        });
-    });
-}
-
-// Cambiar color del gradiente del nombre cada cierto tiempo - VERSIÓN CORREGIDA
+// COMENTAMOS LA FUNCIÓN PROBLEMÁTICA TEMPORALMENTE
+/*
 function initializeNameGradientAnimation() {
     const name = document.querySelector('.name');
-    if (!name) return; // Verificar que el elemento existe
+    if (!name) return;
     
     const colors = [
         'linear-gradient(135deg, #ff6b6b 0%, #ff8e53 12.5%, #ff6b9d 25%, #c44569 37.5%, #6c5ce7 50%, #a29bfe 62.5%, #74b9ff 75%, #0984e3 87.5%, #00b894 100%)',
@@ -114,13 +93,30 @@ function initializeNameGradientAnimation() {
     
     setInterval(() => {
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        // Mantener todas las propiedades necesarias para el texto
         name.style.background = randomColor;
         name.style.backgroundSize = '400% 400%';
         name.style.webkitBackgroundClip = 'text';
         name.style.webkitTextFillColor = 'transparent';
         name.style.backgroundClip = 'text';
-    }, 10000); // Cambiar cada 10 segundos
+    }, 10000);
+}
+*/
+
+// Efecto de paralaje sutil en el mouse - SIMPLIFICADO
+function initializeParallax() {
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        const dots = document.querySelectorAll('.floating-dot');
+        dots.forEach((dot, index) => {
+            const speed = (index % 3 + 1) * 0.5;
+            const x = (mouseX - 0.5) * speed;
+            const y = (mouseY - 0.5) * speed;
+            // CORREGIMOS ESTE BUG - no usar += que acumula transformaciones
+            dot.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    });
 }
 
 // Función para añadir efectos a los botones sociales
@@ -144,7 +140,7 @@ function createHoverEffect() {
     let particles = [];
     
     heroSection.addEventListener('mousemove', function(e) {
-        if (Math.random() > 0.95) { // Solo crear partículas ocasionalmente
+        if (Math.random() > 0.98) { // Reducimos la frecuencia
             const particle = document.createElement('div');
             particle.style.position = 'absolute';
             particle.style.width = '2px';
@@ -160,13 +156,11 @@ function createHoverEffect() {
             document.body.appendChild(particle);
             particles.push(particle);
             
-            // Animar la partícula
             setTimeout(() => {
                 particle.style.opacity = '0';
                 particle.style.transform = 'translateY(-50px) scale(0)';
             }, 100);
             
-            // Remover la partícula después de la animación
             setTimeout(() => {
                 if (particle.parentNode) {
                     particle.parentNode.removeChild(particle);
@@ -177,8 +171,42 @@ function createHoverEffect() {
     });
 }
 
+// FUNCIÓN DE DIAGNÓSTICO
+function debugNameElement() {
+    const nameElement = document.querySelector('.name');
+    if (nameElement) {
+        console.log('✅ Elemento .name encontrado');
+        console.log('📝 Contenido:', nameElement.textContent);
+        console.log('🎨 Estilos computados:', window.getComputedStyle(nameElement));
+        
+        // Verificar si el elemento es visible cada 2 segundos
+        setInterval(() => {
+            const styles = window.getComputedStyle(nameElement);
+            const isVisible = styles.opacity !== '0' && styles.display !== 'none' && styles.visibility !== 'hidden';
+            console.log(`👀 Elemento visible: ${isVisible} | Opacity: ${styles.opacity} | Display: ${styles.display}`);
+            
+            if (!isVisible) {
+                console.log('❌ ¡ELEMENTO NO VISIBLE! Estilos:', {
+                    opacity: styles.opacity,
+                    display: styles.display,
+                    visibility: styles.visibility,
+                    color: styles.color,
+                    background: styles.background
+                });
+            }
+        }, 2000);
+    } else {
+        console.log('❌ No se encontró el elemento .name');
+    }
+}
+
 // Inicializar todas las funcionalidades cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Iniciando diagnóstico del portafolio...');
+    
+    // Función de diagnóstico
+    debugNameElement();
+    
     // Crear elementos flotantes
     createFloatingElements();
     
@@ -188,8 +216,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar efecto de paralaje
     initializeParallax();
     
-    // Inicializar animación de gradiente del nombre
-    initializeNameGradientAnimation();
+    // COMENTAMOS TEMPORALMENTE LA ANIMACIÓN DEL GRADIENTE
+    // initializeNameGradientAnimation();
     
     // Inicializar efectos de botones sociales
     initializeSocialButtons();
@@ -197,12 +225,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar efecto de partículas en hover
     createHoverEffect();
     
-    console.log('🚀 Portafolio de Alejandro Anton cargado exitosamente!');
+    console.log('✅ Portafolio de Alejandro Anton cargado (modo diagnóstico)');
 });
 
 // Función para manejar el redimensionamiento de ventana
 window.addEventListener('resize', function() {
-    // Re-calcular posiciones si es necesario
     const dots = document.querySelectorAll('.floating-dot');
     dots.forEach(dot => {
         dot.style.left = Math.random() * 100 + '%';
