@@ -1,4 +1,3 @@
-
 // Crear elementos flotantes
 function createFloatingElements() {
     const container = document.getElementById('floatingElements');
@@ -104,15 +103,18 @@ function initializeNameGradientAnimation() {
     setInterval(() => {
         const name = document.querySelector('.name');
         const colors = [
-            'linear-gradient(135deg, #e91e63, #9c27b0, #3f51b5, #2196f3)',
-            'linear-gradient(135deg, #ff6b6b, #ee5a24, #0fb9b1, #3742fa)',
-            'linear-gradient(135deg, #a8edea, #fed6e3, #ff9a9e, #fecfef)',
-            'linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c)',
-            'linear-gradient(135deg, #ffecd2, #fcb69f, #ff8a80, #ff5722)'
+            'linear-gradient(135deg, #ff6b6b 0%, #ff8e53 12.5%, #ff6b9d 25%, #c44569 37.5%, #6c5ce7 50%, #a29bfe 62.5%, #74b9ff 75%, #0984e3 87.5%, #00b894 100%)',
+            'linear-gradient(135deg, #a8edea 0%, #fed6e3 25%, #ff9a9e 50%, #fecfef 75%, #ffecd2 100%)',
+            'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%)',
+            'linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff8a80 50%, #ff5722 75%, #e91e63 100%)',
+            'linear-gradient(135deg, #00c9ff 0%, #92fe9d 25%, #00d2ff 50%, #3a7bd5 75%, #00d2ff 100%)'
         ];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        name.style.background = randomColor;
-    }, 8000);
+        if (name) {
+            name.style.background = randomColor;
+            name.style.backgroundSize = '400% 400%';
+        }
+    }, 10000); // Cambiar cada 10 segundos
 }
 
 // Función para añadir efectos a los botones sociales
