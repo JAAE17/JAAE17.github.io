@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Lato', 'Arial', sans-serif;
     background: 
         radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
@@ -71,15 +71,19 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
-/* VERSIÓN CORREGIDA - TEXTO SIEMPRE VISIBLE */
+/* VERSIÓN CORREGIDA - EL NOMBRE SIEMPRE SERÁ VISIBLE */
 .name {
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: bold;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    animation: fadeInUp 1s ease-out 0.3s both;
     
-    /* Color de respaldo en caso de que el gradiente falle */
+    /* Estrategia de respaldo múltiple */
     color: #ffffff;
     
-    /* Gradiente como overlay */
+    /* Aplicar gradiente solo si el navegador lo soporta completamente */
     background: linear-gradient(135deg, 
         #ff6b6b 0%, 
         #ff8e53 12.5%, 
@@ -91,60 +95,47 @@ body {
         #0984e3 87.5%, 
         #00b894 100%);
     background-size: 400% 400%;
+    
+    /* Solo aplicar el clip si el navegador lo soporta */
     -webkit-background-clip: text;
     background-clip: text;
     
-    /* CLAVE: Solo hacer transparente si el navegador soporta background-clip */
+    /* Hacer el texto transparente solo en navegadores que soportan background-clip */
     -webkit-text-fill-color: transparent;
     
-    /* Respaldo para navegadores que no soportan background-clip */
-    @supports not (-webkit-background-clip: text) {
-        color: #64b5f6;
-        -webkit-text-fill-color: initial;
+    /* Animación del gradiente más suave */
+    animation: gradientShift 8s ease-in-out infinite, fadeInUp 1s ease-out 0.3s both;
+}
+
+/* Respaldo para navegadores sin soporte de background-clip */
+@supports not (-webkit-background-clip: text) {
+    .name {
+        background: none !important;
+        color: #64b5f6 !important;
+        -webkit-text-fill-color: #64b5f6 !important;
     }
-    
-    text-align: center;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    animation: gradientShift 6s ease-in-out infinite, fadeInUp 1s ease-out 0.3s both;
-    
-    /* Asegurar que el elemento siempre sea visible */
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
 }
 
-/* Versión alternativa más segura sin -webkit-text-fill-color */
-.name-safe {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: bold;
-    color: transparent;
-    background: linear-gradient(135deg, 
-        #ff6b6b 0%, 
-        #ff8e53 12.5%, 
-        #ff6b9d 25%, 
-        #c44569 37.5%, 
-        #6c5ce7 50%, 
-        #a29bfe 62.5%, 
-        #74b9ff 75%, 
-        #0984e3 87.5%, 
-        #00b894 100%);
-    background-size: 400% 400%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-align: center;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    animation: gradientShift 6s ease-in-out infinite, fadeInUp 1s ease-out 0.3s both;
+/* Respaldo adicional para navegadores muy antiguos */
+@supports not (background-clip: text) {
+    .name {
+        background: none !important;
+        color: #64b5f6 !important;
+        -webkit-text-fill-color: #64b5f6 !important;
+    }
 }
 
-/* Mejorar la animación del gradiente */
+/* Animación del gradiente más estable */
 @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    25% { background-position: 100% 50%; }
-    50% { background-position: 100% 100%; }
-    75% { background-position: 0% 100%; }
-    100% { background-position: 0% 50%; }
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
 }
 
 .description {
@@ -315,10 +306,20 @@ body {
 .section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
+    color: #e91e63;
     background: linear-gradient(135deg, #e91e63, #9c27b0);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Respaldo para títulos de sección */
+@supports not (-webkit-background-clip: text) {
+    .section h2 {
+        background: none !important;
+        color: #e91e63 !important;
+        -webkit-text-fill-color: #e91e63 !important;
+    }
 }
 
 .skills-grid {
@@ -365,6 +366,17 @@ body {
 .project-card h3 {
     color: #64b5f6;
     margin-bottom: 1rem;
+}
+
+/* Estilos adicionales para mayor compatibilidad */
+.name-fallback {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: #64b5f6;
+    animation: fadeInUp 1s ease-out 0.3s both;
 }
 
 @media (max-width: 768px) {

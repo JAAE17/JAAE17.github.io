@@ -24,18 +24,6 @@ function createFloatingElements() {
     }
 }
 
-// Función para descargar CV
-function downloadCV() {
-    const cvUrl = 'path/to/your/cv.pdf';
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'Alejandro_Anton_CV.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    alert('Funcionalidad de descarga de CV - Cambia la URL por la ruta de tu CV real');
-}
-
 // Smooth scroll para los enlaces
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
