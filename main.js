@@ -107,7 +107,6 @@ window.addEventListener('resize', function() {
 
 // Exportar funciones para uso externo
 window.portfolioFunctions = {
-    downloadCV,
     createFloatingElements,
     initializeObservers
 };
