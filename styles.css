@@ -260,18 +260,19 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: transparent; /* Quitar el fondo azul */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Opcional: un borde sutil */
+    border-radius: 30px;
     text-decoration: none;
     text-align: center;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    backdrop-filter: blur(10px); /* Efecto de vidrio si lo deseas */
+    background: linear-gradient(to right, #7f00ff, #7c5fff); /* como el botón interior */
 }
 
 .cv-download:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    opacity: 0.9; /* Suaviza el hover */
+    cursor: pointer;
 }
 
 .linkedin {
