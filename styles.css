@@ -71,7 +71,7 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
-/* VERSIÓN CORREGIDA - EL NOMBRE SIEMPRE SERÁ VISIBLE */
+
 .name {
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: bold;
