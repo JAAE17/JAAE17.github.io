@@ -255,19 +255,19 @@ body {
 .social-btn:hover::before {
     left: 100%;
 }
+
 .cv-download {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: transparent; /* Quitar el fondo azul */
-    border: 2px solid rgba(255, 255, 255, 0.2); /* Opcional: un borde sutil */
+    background: linear-gradient(to right, #7f00ff, #7c5fff); /* Botón morado */
+    border: none; /* Quita borde azul */
     border-radius: 30px;
     text-decoration: none;
     text-align: center;
     transition: background-color 0.3s ease, border 0.3s ease;
-    backdrop-filter: blur(10px); /* Efecto de vidrio si lo deseas */
-    background: linear-gradient(to right, #7f00ff, #7c5fff); /* como el botón interior */
+    outline: none; /* Evita borde al hacer clic */
 }
 
 .cv-download:hover {
