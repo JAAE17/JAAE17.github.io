@@ -268,9 +268,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.cv-download:hover {
-    background-color: #0056b3; /* Color azul más oscuro al pasar el mouse */
-}
+
 
 .linkedin {
     background: rgba(10, 102, 194, 0.2);
