@@ -257,8 +257,8 @@ body {
 }
 
 .cv-download {
-    background: skyblue;
-    color: white;
+    background: rgba(10, 102, 194, 0.2);
+    color: #0a66c2;
     border-color: rgba(10, 102, 194, 0.3);
 }
 
