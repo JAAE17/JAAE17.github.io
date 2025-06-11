@@ -258,7 +258,6 @@ body {
 
 .cv-download {
     all: unset; /* Esto elimina todos los estilos por defecto del navegador */
-    background: linear-gradient(to right, #7f00ff, #7c5fff); /* Fondo morado */
     color: white;
     padding: 12px 24px;
     border-radius: 30px;
