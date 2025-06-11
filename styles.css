@@ -255,18 +255,21 @@ body {
 .social-btn:hover::before {
     left: 100%;
 }
-
 .cv-download {
-    background: rgba(10, 102, 194, 0.2);
-    color: #0a66c2;
-    border-color: rgba(10, 102, 194, 0.3);
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff; /* Color azul */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .cv-download:hover {
-    background: rgba(10, 102, 194, 0.3);
-    border-color: rgba(10, 102, 194, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(10, 102, 194, 0.2);
+    background-color: #0056b3; /* Color azul más oscuro al pasar el mouse */
 }
 
 .linkedin {
