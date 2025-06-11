@@ -259,8 +259,9 @@ body {
 .cv-download {
     all: unset; /* Esto elimina todos los estilos por defecto del navegador */
     color: white;
+    background: none;
     padding: 12px 24px;
-    border-radius: none;
+    border-radius: 30px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
