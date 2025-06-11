@@ -257,22 +257,23 @@ body {
 }
 
 .cv-download {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    all: unset; /* Esto elimina todos los estilos por defecto del navegador */
+    background: linear-gradient(to right, #7f00ff, #7c5fff); /* Fondo morado */
     color: white;
-    background: linear-gradient(to right, #7f00ff, #7c5fff); /* Botón morado */
-    border: none; /* Quita borde azul */
+    padding: 12px 24px;
     border-radius: 30px;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s ease, border 0.3s ease;
-    outline: none; /* Evita borde al hacer clic */
-}
-
-.cv-download:hover {
-    opacity: 0.9; /* Suaviza el hover */
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+.cv-download:hover {
+    opacity: 0.9;
 }
 
 .linkedin {
